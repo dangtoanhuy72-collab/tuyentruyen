@@ -1,196 +1,297 @@
-<!-- KHU VỰC 1: ĐỊNH DẠNG GIAO DIỆN (CSS) - KHÔNG CẦN CHỈNH SỬA -->
-<style>
-    .infographic-wrapper {
-        font-family: "Helvetica Neue", Arial, sans-serif;
-        max-width: 850px;
-        margin: 20px auto;
-        padding: 10px;
-        background: #ffffff;
-    }
-    .info-title-main {
-        text-align: center;
-        color: #d32f2f;
-        font-size: 20px;
-        font-weight: bold;
-        margin: 30px 0 15px 0;
-        text-transform: uppercase;
-        border-left: 5px solid #d32f2f;
-        padding-left: 10px;
-    }
-    .map-container-1, .map-container-2 {
-        background: #f4f6f9;
-        border: 1px solid #dee2e6;
-        border-radius: 8px;
-        padding: 30px 20px;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    /* Sơ đồ 1 */
-    .main-node-1 {
-        background: #0056b3; color: white;
-        padding: 15px 30px; border-radius: 30px;
-        display: inline-block; font-weight: bold; font-size: 18px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 35px;
-    }
-    .branches-1 {
-        display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-    }
-    .branch-btn {
-        background: #17a2b8; color: white; padding: 12px 10px;
-        border-radius: 6px; cursor: pointer; flex: 1; min-width: 150px;
-        transition: all 0.3s ease; font-weight: bold; border: none; font-size: 14px;
-    }
-    .branch-btn:hover { background: #138496; transform: translateY(-2px); }
-    
-    /* Sơ đồ 2 */
-    .grid-city {
-        display: grid;
-        grid-template-columns: 1fr 1.2fr 1fr;
-        grid-gap: 20px;
-        align-items: center;
-        max-width: 650px;
-        margin: 0 auto;
-    }
-    .city-btn {
-        background: #28a745; color: white; padding: 15px 10px;
-        border-radius: 8px; cursor: pointer; font-weight: bold;
-        border: none; transition: all 0.3s ease; font-size: 14px;
-    }
-    .city-btn:hover { background: #218838; transform: translateY(-2px); }
-    .center-node {
-        background: #343a40; color: white; padding: 20px 10px;
-        border-radius: 50%; font-weight: bold; font-size: 15px;
-        aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    }
-    .city-blue { background: #007bff; }
-    .city-blue:hover { background: #0069d9; }
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic Thành Phố Tương Lai</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00d2ff;
+            --accent-color: #00f2fe;
+            --neon-blue: #00f0ff;
+        }
 
-    /* Định dạng hộp thoại nổi lên (Popup) */
-    .custom-popup-overlay {
-        display: none; position: fixed; top: 0; left: 0; 
-        width: 100%; height: 100%; background: rgba(0,0,0,0.6);
-        z-index: 99999; justify-content: center; align-items: center;
-    }
-    .custom-popup-box {
-        background: white; padding: 25px; border-radius: 10px;
-        max-width: 480px; width: 90%; position: relative;
-        text-align: left; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        animation: popupFeIn 0.3s ease;
-    }
-    @keyframes popupFeIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    .popup-title {
-        margin-top: 0; color: #0056b3; font-size: 18px;
-        border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 15px;
-    }
-    .popup-content-list { padding-left: 20px; margin: 0; }
-    .popup-content-list li { margin-bottom: 10px; line-height: 1.5; color: #333; }
-    .popup-close-x {
-        position: absolute; top: 10px; right: 15px;
-        font-size: 26px; cursor: pointer; color: #bbb; line-height: 1;
-    }
-    .popup-close-x:hover { color: #333; }
-</style>
+        body, html {
+            margin: 0; padding: 0; height: 100%; width: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            background: #060b14; 
+        }
 
-<div class="infographic-wrapper">
+        /* Container chứa ảnh nền thành phố tương lai siêu hoành tráng - Mã hóa nhúng trực tiếp */
+        .city-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            /* Ảnh nền thành phố thông minh Vector 3D đã nhúng trực tiếp vào code, không lo bị chặn mạng */
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="100%" height="100%"><rect width="1440" height="900" fill="%23060b14"/><g opacity="0.25"><path d="M0,900 L150,550 L250,550 L350,900 Z" fill="%231e293b"/><path d="M200,900 L300,420 L450,420 L550,900 Z" fill="%230f172a"/><path d="M500,900 L620,300 L780,300 L900,900 Z" fill="%1e293b"/><path d="M850,900 L980,480 L1100,480 L1250,900 Z" fill="%230f172a"/><path d="M1150,900 L1250,600 L1350,600 L1440,900 Z" fill="%231e293b"/></g><g fill="%2300f0ff" opacity="0.3"><circle cx="620" cy="350" r="2"/><circle cx="650" cy="380" r="2"/><circle cx="700" cy="330" r="1.5"/><circle cx="750" cy="400" r="2"/><circle cx="350" cy="500" r="2"/><circle cx="380" cy="450" r="1.5"/><circle cx="1020" cy="550" r="2"/><circle cx="1060" cy="520" r="1.5"/></g><path d="M-100,900 L500,580 L940,580 L1540,900" fill="none" stroke="%2300f0ff" stroke-width="4" opacity="0.4" filter="blur(2px)"/><path d="M-100,900 L500,580 L940,580 L1540,900" fill="none" stroke="%23ffffff" stroke-width="1" stroke-dasharray="10,15" opacity="0.6"/><g fill="%2300f0ff" opacity="0.08"><rect x="0" y="0" width="1440" height="900" fill="url(%23grid)"/></g><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/></pattern></defs></svg>') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    <!-- ==================== SƠ ĐỒ 1 ==================== -->
-    <div class="info-title-main">1. Infographic "Bản đồ Nghị quyết 57"</div>
-    <div class="map-container-1">
-        <div class="main-node-1">🏛️ NGHỊ QUYẾT 57</div>
-        <div class="branches-1">
-            <button class="branch-btn" onclick="hienThiPopup('khcn')">🔬 Khoa học công nghệ</button>
-            <button class="branch-btn" onclick="hienThiPopup('dmst')">💡 Đổi mới sáng tạo</button>
-            <button class="branch-btn" onclick="hienThiPopup('cds')">💻 Chuyển đổi số</button>
-            <button class="branch-btn" onclick="hienThiPopup('nls')">👥 Nhân lực số</button>
-        </div>
+        /* Lớp phủ lưới mạng công nghệ giúp khung cảnh nhìn hoành tráng hơn */
+        .city-container::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(6, 11, 20, 0.7) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Tiêu đề infographic */
+        .title-top {
+            position: absolute;
+            top: 45px;
+            color: white;
+            z-index: 10;
+            text-align: center;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .title-top h1 { 
+            margin: 0; 
+            font-size: 34px; 
+            text-transform: uppercase; 
+            letter-spacing: 4px;
+            font-weight: 900; 
+            color: #ffffff;
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+        }
+        
+        .title-top p { 
+            margin: 8px 0 0; 
+            font-size: 15px; 
+            color: #a5f3fc; 
+            font-weight: 500;
+        }
+
+        /* Thiết kế các nút điểm nút tương tác phát sáng (Hotspots) */
+        .hotspot {
+            position: absolute;
+            z-index: 20;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .hotspot:hover {
+            transform: scale(1.1);
+        }
+
+        .hotspot-icon {
+            width: 65px; 
+            height: 65px;
+            background: rgba(6, 11, 20, 0.9); 
+            border-radius: 50%;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            font-size: 26px; 
+            color: var(--neon-blue);
+            box-shadow: 0 0 15px var(--neon-blue), inset 0 0 10px var(--neon-blue);
+            position: relative; 
+            border: 2px solid var(--neon-blue);
+        }
+
+        /* Sóng Radar tỏa ra */
+        .hotspot-icon::before {
+            content: ''; 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+            border-radius: 50%;
+            background: rgba(0, 240, 255, 0.4); 
+            animation: radarPulse 2.5s infinite linear; 
+            z-index: -1;
+        }
+
+        @keyframes radarPulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2.3); opacity: 0; }
+        }
+
+        .hotspot-label {
+            color: #ffffff; 
+            margin-top: 10px; 
+            font-weight: bold; 
+            font-size: 13.5px;
+            background: rgba(6, 11, 20, 0.95); 
+            padding: 6px 16px; 
+            border-radius: 30px;
+            border: 1px solid var(--neon-blue); 
+            box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
+            white-space: nowrap;
+        }
+
+        /* Vị trí tọa độ rải đều trên sơ đồ mạng lưới không gian thành phố số */
+        #spot-giaoduc { top: 35%; left: 22%; }
+        #spot-giaothong { top: 62%; left: 35%; }
+        #spot-trungtam { top: 42%; left: 58%; }
+        #spot-yte { top: 55%; left: 78%; }
+
+        /* Khung thiết kế Hộp thoại Pop-up */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 100; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%;
+            background: rgba(3, 7, 18, 0.6); 
+            justify-content: center; 
+            align-items: center; 
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background: rgba(15, 23, 42, 0.95); 
+            border: 2px solid var(--neon-blue);
+            width: 480px; 
+            max-width: 90%; 
+            border-radius: 20px; 
+            padding: 30px;
+            position: relative; 
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.2); 
+            animation: slideIn 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        @keyframes slideIn { 
+            from { transform: translateY(40px); opacity: 0; } 
+            to { transform: translateY(0); opacity: 1; } 
+        }
+
+        .close-btn { 
+            position: absolute; 
+            top: 15px; right: 20px; 
+            font-size: 30px; 
+            cursor: pointer; 
+            color: #94a3b8; 
+        }
+        .close-btn:hover { color: var(--neon-blue); }
+
+        .modal-header { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            border-bottom: 2px solid var(--neon-blue); 
+            padding-bottom: 15px; 
+            margin-bottom: 22px; 
+        }
+        .modal-header i { font-size: 30px; color: var(--neon-blue); }
+        .modal-header h2 { margin: 0; font-size: 22px; color: #ffffff; }
+
+        .modal-body ul { padding-left: 20px; margin: 0; }
+        .modal-body li { margin-bottom: 14px; font-size: 15.5px; line-height: 1.6; color: #cbd5e1; }
+        .modal-body li strong { color: var(--neon-blue); }
+    </style>
+</head>
+<body>
+
+<div class="city-container">
+    <div class="title-top">
+        <h1>Thành Phố Tương Lai</h1>
+        <p>Bấm vào các biểu tượng tỏa sóng để khám phá hạ tầng số</p>
     </div>
 
-    <!-- ==================== SƠ ĐỒ 2 ==================== -->
-    <div class="info-title-main">2. Infographic "Thành phố tương lai"</div>
-    <div class="map-container-2">
-        <div class="grid-city">
-            <div></div>
-            <button class="city-btn" onclick="hienThiPopup('dttm')">🏢 Đô thị thông minh</button>
-            <div></div>
-            
-            <button class="city-btn city-blue" onclick="hienThiPopup('gttm')">🚗 Giao thông số</button>
-            <div class="center-node">🏙️ THÀNH PHỐ SỐ</div>
-            <button class="city-btn" onclick="hienThiPopup('yts')">🏥 Y tế số</button>
-            
-            <div></div>
-            <button class="city-btn" onclick="hienThiPopup('gds')">📚 Giáo dục số</button>
-            <div></div>
-        </div>
+    <div class="hotspot" id="spot-giaoduc" onclick="openInfo('giaoduc')">
+        <div class="hotspot-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+        <div class="hotspot-label">Giáo dục số</div>
     </div>
 
+    <div class="hotspot" id="spot-giaothong" onclick="openInfo('giaothong')">
+        <div class="hotspot-icon"><i class="fa-solid fa-car"></i></div>
+        <div class="hotspot-label">Giao thông thông minh</div>
+    </div>
+
+    <div class="hotspot" id="spot-trungtam" onclick="openInfo('trungtam')">
+        <div class="hotspot-icon"><i class="fa-solid fa-building-shield"></i></div>
+        <div class="hotspot-label">Đô thị thông minh</div>
+    </div>
+
+    <div class="hotspot" id="spot-yte" onclick="openInfo('yte')">
+        <div class="hotspot-icon"><i class="fa-solid fa-hospital-user"></i></div>
+        <div class="hotspot-label">Y tế số</div>
+    </div>
 </div>
 
-<!-- ==================== KHU VỰC HỘP THOẠI POP-UP (NỘI DUNG) ==================== -->
-<div id="myUniversalPopup" class="custom-popup-overlay" onclick="dongPopupNgoai(event)">
-    <div class="custom-popup-box">
-        <span class="popup-close-x" onclick="dongPopup()">&times;</span>
-        <h3 id="popTitle" class="popup-title">Tiêu đề</h3>
-        <ul id="popContent" class="popup-content-list">
-            <!-- Nội dung tự động thay đổi bằng Javascript -->
-        </ul>
+<div id="infoModal" class="modal" onclick="closeModalOutside(event)">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeInfo()">&times;</span>
+        <div class="modal-header">
+            <i id="modalIcon" class="fa-solid"></i>
+            <h2 id="modalTitle">Tiêu đề</h2>
+        </div>
+        <div class="modal-body">
+            <ul id="modalList"></ul>
+        </div>
     </div>
 </div>
 
-<!-- KHU VỰC 3: XỬ LÝ ĐÓNG MỞ TƯƠNG TÁC (JAVASCRIPT) - KHÔNG CẦN CHỈNH SỬA -->
 <script>
-    // Dữ liệu nội dung hiển thị khi bấm nút
-    const duLieuNoiDung = {
-        'cds': {
-            title: "Chuyển đổi số quốc gia",
+    const data = {
+        'giaothong': {
+            title: "Hệ Thống Giao Thông Thông Minh",
+            icon: "fa-car",
             items: [
-                "Phát triển chính quyền số, kinh tế số, xã hội số.",
-                "Lấy người dân, doanh nghiệp làm trung tâm.",
-                "Khai thác hiệu quả dữ liệu phục vụ công tác điều hành."
+                "<strong>Camera giám sát:</strong> Hệ thống mắt thần bao phủ toàn đô thị, ghi hình dữ liệu giao thông liên tục 24/7.",
+                "<strong>Phân tích dữ liệu:</strong> Tự động tính toán mật độ, lưu lượng phương tiện theo thời gian thực.",
+                "<strong>AI cảnh báo ùn tắc:</strong> Dự báo sớm các điểm nóng, hỗ trợ tối ưu sơ đồ tuần tra kiểm soát của lực lượng chức năng.",
+                "<strong>Xử lý vi phạm tự động:</strong> Tự động ghi nhận lỗi, phục vụ công tác xử lý vi phạm hành chính (Phạt nguội) chính xác."
             ]
         },
-        'gttm': {
-            title: "🚗 Hệ thống giao thông thông minh",
+        'trungtam': {
+            title: "Trung Tâm Điều Hành Đô Thị (IOC)",
+            icon: "fa-building-shield",
             items: [
-                "Hệ thống camera giám sát đô thị thông minh.",
-                "Ứng dụng AI phân tích và dự báo các điểm nguy cơ ùn tắc.",
-                "Xử lý tự động vi phạm trật tự an toàn giao thông (Phạt nguội).",
-                "Quản lý điều hành tuần tra kiểm soát trên nền tảng số."
+                "Số hóa dữ liệu dân cư và hạ tầng kỹ thuật đồng bộ trên bản đồ số GIS.",
+                "Tiếp nhận, xử lý phản ánh hiện trường của người dân tức thời qua ứng dụng di động.",
+                "Điều phối lực lượng phản ứng nhanh bảo đảm an ninh trật tự công cộng."
             ]
         },
-        // Các mục khác bạn có thể tự viết thêm nội dung tương tự vào đây nếu cần
-        'khcn': { title: "🔬 Khoa học công nghệ", items: ["Đẩy mạnh nghiên cứu và ứng dụng khoa học kỹ thuật.", "Phục vụ trực tiếp vào các nhiệm vụ chuyên môn."] },
-        'dmst': { title: "💡 Đổi mới sáng tạo", items: ["Khuyến khích các sáng kiến cải tiến mô hình làm việc.", "Ứng dụng giải pháp mới nâng cao năng suất công tác."] },
-        'nls': { title: "👥 Nhân lực số", items: ["Đào tạo, bồi dưỡng kỹ năng công nghệ cho đội ngũ cán bộ.", "Sẵn sàng vận hành các hệ thống cơ sở dữ liệu lớn."] },
-        'dttm': { title: "🏢 Đô thị thông minh", items: ["Quy hoạch không gian đô thị dựa trên dữ liệu số.", "Kết nối đồng bộ hạ tầng kỹ thuật và hạ tầng số."] },
-        'yts': { title: "🏥 Y tế số", items: ["Hồ sơ sức khỏe điện tử toàn dân.", "Khám chữa bệnh từ xa và quản lý bệnh viện thông minh."] },
-        'gds': { title: "📚 Giáo dục số", items: ["Học tập số, bài giảng điện tử tương tác.", "Quản lý văn bằng, chứng chỉ trên nền tảng số hóa."] }
+        'yte': {
+            title: "Hạ Tầng Y Tế Số",
+            icon: "fa-hospital-user",
+            items: [
+                "<strong>Hồ sơ sức khỏe điện tử:</strong> Kết nối liên thông dữ liệu khám chữa bệnh toàn dân.",
+                "<strong>Y tế từ xa (Telehealth):</strong> Hỗ trợ hội chẩn trực tuyến giữa các trạm y tế cơ sở và bệnh viện tuyến trên.",
+                "<strong>Quản lý thông minh:</strong> Đăng ký khám bệnh, thanh toán viện phí không dùng tiền mặt."
+            ]
+        },
+        'giaoduc': {
+            title: "Phát Triển Giáo Dục Số",
+            icon: "fa-book-open-reader",
+            items: [
+                "Ứng dụng lớp học tương tác thông minh và kho học liệu điện tử dùng chung.",
+                "Số hóa hoàn toàn quy trình tuyển sinh đầu cấp, quản lý học bạ điện tử.",
+                "Xác thực văn bằng, chứng chỉ số ứng dụng công nghệ bảo mật cao."
+            ]
+        }
     };
 
-    function hienThiPopup(khoa) {
-        const duLieu = duLieuNoiDung[khoa];
-        if (duLieu) {
-            document.getElementById('popTitle').innerText = duLieu.title;
-            const dsNoiDung = document.getElementById('popContent');
-            dsNoiDung.innerHTML = ""; // Xóa nội dung cũ
-            
-            duLieu.items.forEach(function(item) {
-                const li = document.createElement('li');
-                li.innerText = item;
-                dsNoiDung.appendChild(li);
-            });
-            
-            document.getElementById('myUniversalPopup').style.display = 'flex';
-        }
+    function openInfo(key) {
+        const item = data[key];
+        document.getElementById('modalTitle').innerText = item.title;
+        document.getElementById('modalIcon').className = "fa-solid " + item.icon;
+        
+        const list = document.getElementById('modalList');
+        list.innerHTML = "";
+        item.items.forEach(text => {
+            const li = document.createElement('li');
+            li.innerHTML = text;
+            list.appendChild(li);
+        });
+        document.getElementById('infoModal').style.display = 'flex';
     }
 
-    function dongPopup() {
-        document.getElementById('myUniversalPopup').style.display = 'none';
-    }
-
-    function dongPopupNgoai(e) {
-        if (e.target.className === 'custom-popup-overlay') {
-            dongPopup();
-        }
-    }
+    function closeInfo() { document.getElementById('infoModal').style.display = 'none'; }
+    function closeModalOutside(e) { if(e.target.className === 'modal') closeInfo(); }
 </script>
+
+</body>
+</html>
