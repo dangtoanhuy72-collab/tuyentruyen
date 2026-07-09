@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Infographic Thành Phố Tương Lai</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
             --primary-color: #00d2ff;
@@ -19,171 +18,93 @@
             background: #060b14; 
         }
 
-        /* Container chứa ảnh nền thành phố tương lai siêu hoành tráng - Mã hóa nhúng trực tiếp */
+        /* Container chính chứa ảnh nền đô thị công nghệ được vẽ trực tiếp bằng mã SVG */
         .city-container {
             position: relative;
             width: 100vw;
             height: 100vh;
-            /* Ảnh nền thành phố thông minh Vector 3D đã nhúng trực tiếp vào code, không lo bị chặn mạng */
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="100%" height="100%"><rect width="1440" height="900" fill="%23060b14"/><g opacity="0.25"><path d="M0,900 L150,550 L250,550 L350,900 Z" fill="%231e293b"/><path d="M200,900 L300,420 L450,420 L550,900 Z" fill="%230f172a"/><path d="M500,900 L620,300 L780,300 L900,900 Z" fill="%1e293b"/><path d="M850,900 L980,480 L1100,480 L1250,900 Z" fill="%230f172a"/><path d="M1150,900 L1250,600 L1350,600 L1440,900 Z" fill="%231e293b"/></g><g fill="%2300f0ff" opacity="0.3"><circle cx="620" cy="350" r="2"/><circle cx="650" cy="380" r="2"/><circle cx="700" cy="330" r="1.5"/><circle cx="750" cy="400" r="2"/><circle cx="350" cy="500" r="2"/><circle cx="380" cy="450" r="1.5"/><circle cx="1020" cy="550" r="2"/><circle cx="1060" cy="520" r="1.5"/></g><path d="M-100,900 L500,580 L940,580 L1540,900" fill="none" stroke="%2300f0ff" stroke-width="4" opacity="0.4" filter="blur(2px)"/><path d="M-100,900 L500,580 L940,580 L1540,900" fill="none" stroke="%23ffffff" stroke-width="1" stroke-dasharray="10,15" opacity="0.6"/><g fill="%2300f0ff" opacity="0.08"><rect x="0" y="0" width="1440" height="900" fill="url(%23grid)"/></g><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/></pattern></defs></svg>') no-repeat center center;
+            /* Đã nhúng trọn vẹn bức ảnh thành phố thông minh vào code - Chạy offline hay online đều lên hình */
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="100%" height="100%"><rect width="1440" height="900" fill="%23060b14"/><g fill="%2300f0ff" opacity="0.05"><path d="M0,0 L1440,0 L1440,900 L0,900 Z"/><circle cx="720" cy="450" r="600" fill="none" stroke="%2300f0ff" stroke-width="1" stroke-dasharray="5,10"/></g><g opacity="0.2"><rect x="100" y="300" width="120" height="600" fill="%231e293b" stroke="%2300f0ff" stroke-width="1"/><rect x="260" y="450" width="160" height="450" fill="%230f172a" stroke="%2300f0ff" stroke-width="1"/><rect x="500" y="200" width="200" height="700" fill="%231e293b" stroke="%2300f0ff" stroke-width="2"/><rect x="750" y="380" width="150" height="520" fill="%230f172a" stroke="%2300f0ff" stroke-width="1"/><rect x="950" y="250" width="180" height="650" fill="%231e293b" stroke="%2300f0ff" stroke-width="1.5"/><rect x="1180" y="400" width="140" height="500" fill="%230f172a" stroke="%2300f0ff" stroke-width="1"/></g><path d="M-100,750 C300,750 500,550 1540,550" fill="none" stroke="%2300f0ff" stroke-width="4" opacity="0.3" filter="blur(2px)"/><path d="M-100,750 C300,750 500,550 1540,550" fill="none" stroke="%23ffffff" stroke-width="1.5" stroke-dasharray="12,12" opacity="0.6"/><g fill="%2300f0ff" opacity="0.1"><rect x="0" y="0" width="1440" height="900" fill="url(%23cyber-grid)"/></g><defs><pattern id="cyber-grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="white" stroke-width="0.5"/></pattern></defs></svg>') no-repeat center center;
             background-size: cover;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* Lớp phủ lưới mạng công nghệ giúp khung cảnh nhìn hoành tráng hơn */
         .city-container::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(6, 11, 20, 0.7) 100%);
-            z-index: 1;
-            pointer-events: none;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, transparent 30%, rgba(6, 11, 20, 0.7) 100%);
+            z-index: 1; pointer-events: none;
         }
 
-        /* Tiêu đề infographic */
+        /* Tiêu đề chính */
         .title-top {
-            position: absolute;
-            top: 45px;
-            color: white;
-            z-index: 10;
-            text-align: center;
-            width: 100%;
-            pointer-events: none;
+            position: absolute; top: 45px; color: white; z-index: 10; text-align: center; width: 100%; pointer-events: none;
         }
-
         .title-top h1 { 
-            margin: 0; 
-            font-size: 34px; 
-            text-transform: uppercase; 
-            letter-spacing: 4px;
-            font-weight: 900; 
-            color: #ffffff;
-            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+            margin: 0; font-size: 34px; text-transform: uppercase; letter-spacing: 4px; font-weight: 900; 
+            color: #ffffff; text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
         }
-        
-        .title-top p { 
-            margin: 8px 0 0; 
-            font-size: 15px; 
-            color: #a5f3fc; 
-            font-weight: 500;
-        }
+        .title-top p { margin: 8px 0 0; font-size: 15px; color: #a5f3fc; font-weight: 500; }
 
-        /* Thiết kế các nút điểm nút tương tác phát sáng (Hotspots) */
+        /* Nút tương tác phát sáng */
         .hotspot {
-            position: absolute;
-            z-index: 20;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            position: absolute; z-index: 20; cursor: pointer; display: flex; flex-direction: column; align-items: center;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
-        .hotspot:hover {
-            transform: scale(1.1);
-        }
+        .hotspot:hover { transform: scale(1.1); }
 
         .hotspot-icon {
-            width: 65px; 
-            height: 65px;
-            background: rgba(6, 11, 20, 0.9); 
-            border-radius: 50%;
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            font-size: 26px; 
-            color: var(--neon-blue);
+            width: 65px; height: 65px; background: rgba(6, 11, 20, 0.95); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
             box-shadow: 0 0 15px var(--neon-blue), inset 0 0 10px var(--neon-blue);
-            position: relative; 
-            border: 2px solid var(--neon-blue);
+            position: relative; border: 2px solid var(--neon-blue);
         }
 
-        /* Sóng Radar tỏa ra */
+        /* Hiệu ứng radar nhảy sóng */
         .hotspot-icon::before {
-            content: ''; 
-            position: absolute; 
-            width: 100%; 
-            height: 100%; 
-            border-radius: 50%;
-            background: rgba(0, 240, 255, 0.4); 
-            animation: radarPulse 2.5s infinite linear; 
-            z-index: -1;
+            content: ''; position: absolute; width: 100%; height: 100%; border-radius: 50%;
+            background: rgba(0, 240, 255, 0.4); animation: radarPulse 2.5s infinite linear; z-index: -1;
         }
-
         @keyframes radarPulse {
             0% { transform: scale(1); opacity: 1; }
             100% { transform: scale(2.3); opacity: 0; }
         }
 
+        /* SVG Icon nhúng trực tiếp bên trong vòng tròn */
+        .hotspot-icon svg {
+            width: 28px; height: 28px; fill: var(--neon-blue);
+        }
+
         .hotspot-label {
-            color: #ffffff; 
-            margin-top: 10px; 
-            font-weight: bold; 
-            font-size: 13.5px;
-            background: rgba(6, 11, 20, 0.95); 
-            padding: 6px 16px; 
-            border-radius: 30px;
-            border: 1px solid var(--neon-blue); 
-            box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
-            white-space: nowrap;
+            color: #ffffff; margin-top: 10px; font-weight: bold; font-size: 13.5px;
+            background: rgba(6, 11, 20, 0.95); padding: 6px 16px; border-radius: 30px;
+            border: 1px solid var(--neon-blue); box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3); white-space: nowrap;
         }
 
-        /* Vị trí tọa độ rải đều trên sơ đồ mạng lưới không gian thành phố số */
-        #spot-giaoduc { top: 35%; left: 22%; }
-        #spot-giaothong { top: 62%; left: 35%; }
-        #spot-trungtam { top: 42%; left: 58%; }
-        #spot-yte { top: 55%; left: 78%; }
+        /* Tọa độ hiển thị cân xứng */
+        #spot-giaoduc { top: 32%; left: 18%; }
+        #spot-giaothong { top: 60%; left: 32%; }
+        #spot-trungtam { top: 38%; left: 56%; }
+        #spot-yte { top: 52%; left: 78%; }
 
-        /* Khung thiết kế Hộp thoại Pop-up */
+        /* Hộp thoại Pop-up kính mờ */
         .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 100; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%;
-            background: rgba(3, 7, 18, 0.6); 
-            justify-content: center; 
-            align-items: center; 
-            backdrop-filter: blur(8px);
+            display: none; position: fixed; z-index: 100; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(3, 7, 18, 0.6); justify-content: center; align-items: center; backdrop-filter: blur(8px);
         }
-
         .modal-content {
-            background: rgba(15, 23, 42, 0.95); 
-            border: 2px solid var(--neon-blue);
-            width: 480px; 
-            max-width: 90%; 
-            border-radius: 20px; 
-            padding: 30px;
-            position: relative; 
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.2); 
-            animation: slideIn 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+            background: rgba(15, 23, 42, 0.98); border: 2px solid var(--neon-blue);
+            width: 480px; max-width: 90%; border-radius: 20px; padding: 30px; position: relative; 
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3); animation: slideIn 0.35s ease-out;
         }
-
-        @keyframes slideIn { 
-            from { transform: translateY(40px); opacity: 0; } 
-            to { transform: translateY(0); opacity: 1; } 
-        }
-
-        .close-btn { 
-            position: absolute; 
-            top: 15px; right: 20px; 
-            font-size: 30px; 
-            cursor: pointer; 
-            color: #94a3b8; 
-        }
+        @keyframes slideIn { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: #94a3b8; }
         .close-btn:hover { color: var(--neon-blue); }
 
-        .modal-header { 
-            display: flex; 
-            align-items: center; 
-            gap: 15px; 
-            border-bottom: 2px solid var(--neon-blue); 
-            padding-bottom: 15px; 
-            margin-bottom: 22px; 
-        }
-        .modal-header i { font-size: 30px; color: var(--neon-blue); }
+        .modal-header { display: flex; align-items: center; gap: 15px; border-bottom: 2px solid var(--neon-blue); padding-bottom: 15px; margin-bottom: 22px; }
+        .modal-header svg { width: 32px; height: 32px; fill: var(--neon-blue); }
         .modal-header h2 { margin: 0; font-size: 22px; color: #ffffff; }
 
         .modal-body ul { padding-left: 20px; margin: 0; }
@@ -200,22 +121,30 @@
     </div>
 
     <div class="hotspot" id="spot-giaoduc" onclick="openInfo('giaoduc')">
-        <div class="hotspot-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+        <div class="hotspot-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.48 9L12 4.35 20.52 9 12 13.65 3.48 9zM6 13.22V17c0 1.66 2.69 3 6 3s6-1.34 6-3v-3.78l-6 3.27-6-3.27z"/></svg>
+        </div>
         <div class="hotspot-label">Giáo dục số</div>
     </div>
 
     <div class="hotspot" id="spot-giaothong" onclick="openInfo('giaothong')">
-        <div class="hotspot-icon"><i class="fa-solid fa-car"></i></div>
+        <div class="hotspot-icon">
+            <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.24-3.72c.07-.2.26-.33.47-.33h10.57c.21 0 .4.13.47.33L19 11H5z"/></svg>
+        </div>
         <div class="hotspot-label">Giao thông thông minh</div>
     </div>
 
     <div class="hotspot" id="spot-trungtam" onclick="openInfo('trungtam')">
-        <div class="hotspot-icon"><i class="fa-solid fa-building-shield"></i></div>
+        <div class="hotspot-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+        </div>
         <div class="hotspot-label">Đô thị thông minh</div>
     </div>
 
     <div class="hotspot" id="spot-yte" onclick="openInfo('yte')">
-        <div class="hotspot-icon"><i class="fa-solid fa-hospital-user"></i></div>
+        <div class="hotspot-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>
+        </div>
         <div class="hotspot-label">Y tế số</div>
     </div>
 </div>
@@ -224,7 +153,7 @@
     <div class="modal-content">
         <span class="close-btn" onclick="closeInfo()">&times;</span>
         <div class="modal-header">
-            <i id="modalIcon" class="fa-solid"></i>
+            <div id="modalIconContainer"></div>
             <h2 id="modalTitle">Tiêu đề</h2>
         </div>
         <div class="modal-body">
@@ -237,7 +166,7 @@
     const data = {
         'giaothong': {
             title: "Hệ Thống Giao Thông Thông Minh",
-            icon: "fa-car",
+            icon: '<svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.24-3.72c.07-.2.26-.33.47-.33h10.57c.21 0 .4.13.47.33L19 11H5z"/></svg>',
             items: [
                 "<strong>Camera giám sát:</strong> Hệ thống mắt thần bao phủ toàn đô thị, ghi hình dữ liệu giao thông liên tục 24/7.",
                 "<strong>Phân tích dữ liệu:</strong> Tự động tính toán mật độ, lưu lượng phương tiện theo thời gian thực.",
@@ -247,7 +176,7 @@
         },
         'trungtam': {
             title: "Trung Tâm Điều Hành Đô Thị (IOC)",
-            icon: "fa-building-shield",
+            icon: '<svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>',
             items: [
                 "Số hóa dữ liệu dân cư và hạ tầng kỹ thuật đồng bộ trên bản đồ số GIS.",
                 "Tiếp nhận, xử lý phản ánh hiện trường của người dân tức thời qua ứng dụng di động.",
@@ -256,7 +185,7 @@
         },
         'yte': {
             title: "Hạ Tầng Y Tế Số",
-            icon: "fa-hospital-user",
+            icon: '<svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>',
             items: [
                 "<strong>Hồ sơ sức khỏe điện tử:</strong> Kết nối liên thông dữ liệu khám chữa bệnh toàn dân.",
                 "<strong>Y tế từ xa (Telehealth):</strong> Hỗ trợ hội chẩn trực tuyến giữa các trạm y tế cơ sở và bệnh viện tuyến trên.",
@@ -265,7 +194,7 @@
         },
         'giaoduc': {
             title: "Phát Triển Giáo Dục Số",
-            icon: "fa-book-open-reader",
+            icon: '<svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.48 9L12 4.35 20.52 9 12 13.65 3.48 9zM6 13.22V17c0 1.66 2.69 3 6 3s6-1.34 6-3v-3.78l-6 3.27-6-3.27z"/></svg>',
             items: [
                 "Ứng dụng lớp học tương tác thông minh và kho học liệu điện tử dùng chung.",
                 "Số hóa hoàn toàn quy trình tuyển sinh đầu cấp, quản lý học bạ điện tử.",
@@ -277,7 +206,7 @@
     function openInfo(key) {
         const item = data[key];
         document.getElementById('modalTitle').innerText = item.title;
-        document.getElementById('modalIcon').className = "fa-solid " + item.icon;
+        document.getElementById('modalIconContainer').innerHTML = item.icon;
         
         const list = document.getElementById('modalList');
         list.innerHTML = "";
