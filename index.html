@@ -14,163 +14,122 @@
         body, html {
             margin: 0; padding: 0; height: 100%; width: 100%;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
+            overflow-x: hidden;
             background: #060b14; 
         }
 
-        /* Container chứa ảnh nền thành phố hiện đại siêu hoành tráng */
+        /* Container nền thành phố */
         .city-container {
             position: relative;
             width: 100vw;
             height: 100vh;
-            /* Dùng link ảnh cấu trúc chuẩn từ Unsplash Source - Tự động hiển thị mượt mà kể cả khi chạy file offline trên máy */
             background: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
             background-size: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        /* Lớp phủ hiệu ứng ánh sáng ma trận giúp tăng tính công nghệ và làm nổi bật các biểu tượng */
+        /* Lớp phủ hiệu ứng công nghệ */
         .city-container::after {
-            content: '';
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(6, 11, 20, 0.4) 0%, rgba(0, 240, 255, 0.15) 100%);
+            z-index: 1; pointer-events: none;
+        }
+
+        /* Khung chứa các nút bấm tương tác */
+        .hotspots-wrapper {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, rgba(6, 11, 20, 0.2) 0%, rgba(0, 240, 255, 0.15) 100%);
-            z-index: 1;
-            pointer-events: none;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 10;
         }
 
         /* Tiêu đề chính */
         .title-top {
-            position: absolute;
-            top: 45px;
-            color: white;
-            z-index: 10;
-            text-align: center;
-            width: 100%;
-            pointer-events: none;
+            position: absolute; top: 6%; color: white; z-index: 20; text-align: center; width: 100%; pointer-events: none;
         }
-
         .title-top h1 { 
-            margin: 0; 
-            font-size: 34px; 
-            text-transform: uppercase; 
-            letter-spacing: 4px;
-            font-weight: 900; 
-            color: #ffffff;
-            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+            margin: 0; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 900; 
+            color: #ffffff; text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
         }
-        
-        .title-top p { 
-            margin: 8px 0 0; 
-            font-size: 15px; 
-            color: #a5f3fc; 
-            font-weight: 500;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
-        }
+        .title-top p { margin: 8px 15px 0; font-size: 1rem; color: #a5f3fc; font-weight: 500; }
 
-        /* Nút tương tác phát sáng (Hotspots) */
+        /* Định dạng chung cho nút Hotspot */
         .hotspot {
-            position: absolute;
-            z-index: 20;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            position: absolute; cursor: pointer; display: flex; flex-direction: column; align-items: center;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .hotspot:hover { transform: scale(1.1); }
+        .hotspot:hover { transform: scale(1.08); }
 
         .hotspot-icon {
-            width: 65px; 
-            height: 65px; 
-            background: rgba(6, 11, 20, 0.85); 
-            border-radius: 50%;
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
+            width: 55px; height: 55px; background: rgba(6, 11, 20, 0.9); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
             box-shadow: 0 0 15px var(--neon-blue), inset 0 0 10px var(--neon-blue);
-            position: relative; 
-            border: 2px solid var(--neon-blue);
+            position: relative; border: 2px solid var(--neon-blue);
         }
 
-        /* Hiệu ứng radar nhảy sóng */
         .hotspot-icon::before {
-            content: ''; 
-            position: absolute; 
-            width: 100%; 
-            height: 100%; 
-            border-radius: 50%;
-            background: rgba(0, 240, 255, 0.4); 
-            animation: radarPulse 2.5s infinite linear; 
-            z-index: -1;
+            content: ''; position: absolute; width: 100%; height: 100%; border-radius: 50%;
+            background: rgba(0, 240, 255, 0.3); animation: radarPulse 2.5s infinite linear; z-index: -1;
         }
         @keyframes radarPulse {
             0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(2.3); opacity: 0; }
+            100% { transform: scale(2.2); opacity: 0; }
         }
 
-        /* SVG Icon nhúng trực tiếp */
-        .hotspot-icon svg {
-            width: 28px; 
-            height: 28px; 
-            fill: var(--neon-blue);
-        }
+        .hotspot-icon svg { width: 24px; height: 24px; fill: var(--neon-blue); }
 
         .hotspot-label {
-            color: #ffffff; 
-            margin-top: 10px; 
-            font-weight: bold; 
-            font-size: 13.5px;
-            background: rgba(6, 11, 20, 0.9); 
-            padding: 6px 16px; 
-            border-radius: 30px;
-            border: 1px solid var(--neon-blue); 
-            box-shadow: 0 4px 15px rgba(0, 240, 255, 0.4); 
-            white-space: nowrap;
+            color: #ffffff; margin-top: 8px; font-weight: bold; font-size: 12.5px;
+            background: rgba(6, 11, 20, 0.95); padding: 5px 14px; border-radius: 30px;
+            border: 1px solid var(--neon-blue); box-shadow: 0 4px 12px rgba(0, 240, 255, 0.3); white-space: nowrap;
         }
 
-        /* Tọa độ hiển thị cân xứng đẹp mắt bao quanh thành phố */
-        #spot-giaoduc { top: 35%; left: 20%; }
-        #spot-giaothong { top: 65%; left: 35%; }
-        #spot-trungtam { top: 42%; left: 58%; }
-        #spot-yte { top: 55%; left: 78%; }
+        /* VỊ TRÍ TỌA ĐỘ TRÊN MÁY TÍNH (MÀN HÌNH RỘNG) */
+        #spot-giaoduc { top: 32%; left: 20%; }
+        #spot-giaothong { top: 62%; left: 35%; }
+        #spot-trungtam { top: 40%; left: 58%; }
+        #spot-yte { top: 52%; left: 78%; }
 
-        /* Hộp thoại Pop-up kính mờ hiện đại */
+        /* ------------------------------------------------------------- */
+        /* CẤU HÌNH TỰ ĐỘNG CHỐNG CHỒNG ĐÈ KHI THU NHỎ (MÀN HÌNH < 850px) */
+        @media (max-width: 850px) {
+            body, html { overflow-y: auto; } /* Cho phép cuộn nếu màn hình quá ngắn */
+            .city-container { height: auto; min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 160px; padding-bottom: 40px; box-sizing: border-box; }
+            .title-top { position: relative; top: 0; margin-bottom: 40px; }
+            .title-top h1 { font-size: 1.7rem; }
+            
+            /* Kích hoạt Grid: Chuyển toàn bộ nút thành hệ thống lưới ngay ngắn */
+            .hotspots-wrapper {
+                position: relative; width: 90%; height: auto; margin: 0 auto;
+                display: grid; 
+                grid-template-columns: repeat(2, 1fr); /* Chia đều thành 2 cột bằng nhau */
+                gap: 30px 20px; /* Tạo khoảng cách an toàn, không bao giờ chạm nhau */
+            }
+
+            /* Hủy bỏ thuộc tính căn tọa độ tuyệt đối của máy tính */
+            .hotspot { position: relative !important; top: auto !important; left: auto !important; width: 100%; }
+            .hotspot-icon { width: 52px; height: 52px; }
+            .hotspot-label { font-size: 12px; white-space: normal; text-align: center; max-width: 130px; }
+        }
+
+        /* Thiết kế Hộp thoại Pop-up kính mờ */
         .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 100; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%;
-            background: rgba(3, 7, 18, 0.6); 
-            justify-content: center; 
-            align-items: center; 
-            backdrop-filter: blur(8px);
+            display: none; position: fixed; z-index: 100; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(3, 7, 18, 0.65); justify-content: center; align-items: center; backdrop-filter: blur(8px);
         }
         .modal-content {
-            background: rgba(15, 23, 42, 0.98); 
-            border: 2px solid var(--neon-blue);
-            width: 480px; 
-            max-width: 90%; 
-            border-radius: 20px; 
-            padding: 30px; 
-            position: relative; 
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3); 
-            animation: slideIn 0.35s ease-out;
+            background: rgba(15, 23, 42, 0.98); border: 2px solid var(--neon-blue);
+            width: 450px; max-width: 85%; border-radius: 16px; padding: 25px; position: relative; 
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.3); animation: slideIn 0.3s ease-out;
         }
-        @keyframes slideIn { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes slideIn { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
-        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: #94a3b8; }
+        .close-btn { position: absolute; top: 12px; right: 18px; font-size: 28px; cursor: pointer; color: #94a3b8; }
         .close-btn:hover { color: var(--neon-blue); }
-
-        .modal-header { display: flex; align-items: center; gap: 15px; border-bottom: 2px solid var(--neon-blue); padding-bottom: 15px; margin-bottom: 22px; }
-        .modal-header svg { width: 32px; height: 32px; fill: var(--neon-blue); }
-        .modal-header h2 { margin: 0; font-size: 22px; color: #ffffff; }
-
-        .modal-body ul { padding-left: 20px; margin: 0; }
-        .modal-body li { margin-bottom: 14px; font-size: 15.5px; line-height: 1.6; color: #cbd5e1; }
+        .modal-header { display: flex; align-items: center; gap: 12px; border-bottom: 2px solid var(--neon-blue); padding-bottom: 12px; margin-bottom: 18px; }
+        .modal-header svg { width: 28px; height: 28px; fill: var(--neon-blue); }
+        .modal-header h2 { margin: 0; font-size: 18px; color: #ffffff; }
+        .modal-body ul { padding-left: 18px; margin: 0; }
+        .modal-body li { margin-bottom: 11px; font-size: 14px; line-height: 1.5; color: #cbd5e1; }
         .modal-body li strong { color: var(--neon-blue); }
     </style>
 </head>
@@ -182,32 +141,34 @@
         <p>Bấm vào các biểu tượng tỏa sóng để khám phá hạ tầng số</p>
     </div>
 
-    <div class="hotspot" id="spot-giaoduc" onclick="openInfo('giaoduc')">
-        <div class="hotspot-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.48 9L12 4.35 20.52 9 12 13.65 3.48 9zM6 13.22V17c0 1.66 2.69 3 6 3s6-1.34 6-3v-3.78l-6 3.27-6-3.27z"/></svg>
+    <div class="hotspots-wrapper">
+        <div class="hotspot" id="spot-giaoduc" onclick="openInfo('giaoduc')">
+            <div class="hotspot-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.48 9L12 4.35 20.52 9 12 13.65 3.48 9zM6 13.22V17c0 1.66 2.69 3 6 3s6-1.34 6-3v-3.78l-6 3.27-6-3.27z"/></svg>
+            </div>
+            <div class="hotspot-label">Giáo dục số</div>
         </div>
-        <div class="hotspot-label">Giáo dục số</div>
-    </div>
 
-    <div class="hotspot" id="spot-giaothong" onclick="openInfo('giaothong')">
-        <div class="hotspot-icon">
-            <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.24-3.72c.07-.2.26-.33.47-.33h10.57c.21 0 .4.13.47.33L19 11H5z"/></svg>
+        <div class="hotspot" id="spot-giaothong" onclick="openInfo('giaothong')">
+            <div class="hotspot-icon">
+                <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.24-3.72c.07-.2.26-.33.47-.33h10.57c.21 0 .4.13.47.33L19 11H5z"/></svg>
+            </div>
+            <div class="hotspot-label">Giao thông thông minh</div>
         </div>
-        <div class="hotspot-label">Giao thông thông minh</div>
-    </div>
 
-    <div class="hotspot" id="spot-trungtam" onclick="openInfo('trungtam')">
-        <div class="hotspot-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+        <div class="hotspot" id="spot-trungtam" onclick="openInfo('trungtam')">
+            <div class="hotspot-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+            </div>
+            <div class="hotspot-label">Đô thị thông minh</div>
         </div>
-        <div class="hotspot-label">Đô thị thông minh</div>
-    </div>
 
-    <div class="hotspot" id="spot-yte" onclick="openInfo('yte')">
-        <div class="hotspot-icon">
-            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>
+        <div class="hotspot" id="spot-yte" onclick="openInfo('yte')">
+            <div class="hotspot-icon">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>
+            </div>
+            <div class="hotspot-label">Y tế số</div>
         </div>
-        <div class="hotspot-label">Y tế số</div>
     </div>
 </div>
 
@@ -269,7 +230,6 @@
         const item = data[key];
         document.getElementById('modalTitle').innerText = item.title;
         document.getElementById('modalIconContainer').innerHTML = item.icon;
-        
         const list = document.getElementById('modalList');
         list.innerHTML = "";
         item.items.forEach(text => {
