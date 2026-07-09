@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infographic Thành Phố Tương Lai</title>
+    <title>Infographic 20 Nhiệm Vụ Công Nghệ Chiến Lược Quốc Gia</title>
     <style>
         :root {
             --primary-color: #00d2ff;
@@ -18,7 +18,7 @@
             background: #060b14; 
         }
 
-        /* Container nền thành phố */
+        /* Container nền thành phố công nghệ */
         .city-container {
             position: relative;
             width: 100vw;
@@ -42,9 +42,9 @@
             z-index: 10;
         }
 
-        /* Tiêu đề chính */
+        /* Tiêu đề chính cập nhật */
         .title-top {
-            position: absolute; top: 6%; color: white; z-index: 20; text-align: center; width: 100%; pointer-events: none;
+            position: absolute; top: 4%; color: white; z-index: 20; text-align: center; width: 100%; pointer-events: none;
         }
         .title-top h1 { 
             margin: 0; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 900; 
@@ -84,90 +84,95 @@
         }
 
         /* VỊ TRÍ TỌA ĐỘ TRÊN MÁY TÍNH (MÀN HÌNH RỘNG) */
-        #spot-giaoduc { top: 32%; left: 20%; }
-        #spot-giaothong { top: 62%; left: 35%; }
-        #spot-trungtam { top: 40%; left: 58%; }
-        #spot-yte { top: 52%; left: 78%; }
+        #spot-nhom1 { top: 32%; left: 20%; }
+        #spot-nhom2 { top: 62%; left: 35%; }
+        #spot-nhom3 { top: 40%; left: 58%; }
+        #spot-nhom4 { top: 52%; left: 78%; }
 
-        /* ------------------------------------------------------------- */
         /* CẤU HÌNH TỰ ĐỘNG CHỐNG CHỒNG ĐÈ KHI THU NHỎ (MÀN HÌNH < 850px) */
         @media (max-width: 850px) {
-            body, html { overflow-y: auto; } /* Cho phép cuộn nếu màn hình quá ngắn */
+            body, html { overflow-y: auto; }
             .city-container { height: auto; min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 160px; padding-bottom: 40px; box-sizing: border-box; }
             .title-top { position: relative; top: 0; margin-bottom: 40px; }
             .title-top h1 { font-size: 1.7rem; }
             
-            /* Kích hoạt Grid: Chuyển toàn bộ nút thành hệ thống lưới ngay ngắn */
             .hotspots-wrapper {
                 position: relative; width: 90%; height: auto; margin: 0 auto;
                 display: grid; 
-                grid-template-columns: repeat(2, 1fr); /* Chia đều thành 2 cột bằng nhau */
-                gap: 30px 20px; /* Tạo khoảng cách an toàn, không bao giờ chạm nhau */
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 30px 20px; 
             }
 
-            /* Hủy bỏ thuộc tính căn tọa độ tuyệt đối của máy tính */
             .hotspot { position: relative !important; top: auto !important; left: auto !important; width: 100%; }
             .hotspot-icon { width: 52px; height: 52px; }
             .hotspot-label { font-size: 12px; white-space: normal; text-align: center; max-width: 130px; }
         }
 
-        /* Thiết kế Hộp thoại Pop-up kính mờ */
+        /* Thiết kế Hộp thoại Pop-up kính mờ rộng rãi cho nhiều nội dung */
         .modal {
             display: none; position: fixed; z-index: 100; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(3, 7, 18, 0.65); justify-content: center; align-items: center; backdrop-filter: blur(8px);
         }
         .modal-content {
             background: rgba(15, 23, 42, 0.98); border: 2px solid var(--neon-blue);
-            width: 450px; max-width: 85%; border-radius: 16px; padding: 25px; position: relative; 
+            width: 650px; max-width: 90%; max-height: 80vh; border-radius: 16px; padding: 25px; position: relative; 
             box-shadow: 0 0 30px rgba(0, 240, 255, 0.3); animation: slideIn 0.3s ease-out;
+            display: flex; flex-direction: column;
         }
         @keyframes slideIn { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
-        .close-btn { position: absolute; top: 12px; right: 18px; font-size: 28px; cursor: pointer; color: #94a3b8; }
+        .close-btn { position: absolute; top: 12px; right: 18px; font-size: 28px; cursor: pointer; color: #94a3b8; z-index: 10; }
         .close-btn:hover { color: var(--neon-blue); }
-        .modal-header { display: flex; align-items: center; gap: 12px; border-bottom: 2px solid var(--neon-blue); padding-bottom: 12px; margin-bottom: 18px; }
+        .modal-header { display: flex; align-items: center; gap: 12px; border-bottom: 2px solid var(--neon-blue); padding-bottom: 12px; margin-bottom: 15px; flex-shrink: 0; }
         .modal-header svg { width: 28px; height: 28px; fill: var(--neon-blue); }
         .modal-header h2 { margin: 0; font-size: 18px; color: #ffffff; }
+        
+        /* Tạo thanh cuộn mượt cho nội dung dài */
+        .modal-body { overflow-y: auto; padding-right: 10px; }
+        .modal-body::-webkit-scrollbar { width: 6px; }
+        .modal-body::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); }
+        .modal-body::-webkit-scrollbar-thumb { background: var(--neon-blue); border-radius: 3px; }
+        
         .modal-body ul { padding-left: 18px; margin: 0; }
-        .modal-body li { margin-bottom: 11px; font-size: 14px; line-height: 1.5; color: #cbd5e1; }
-        .modal-body li strong { color: var(--neon-blue); }
+        .modal-body li { margin-bottom: 14px; font-size: 14px; line-height: 1.6; color: #cbd5e1; text-align: justify; }
+        .modal-body li strong { color: var(--neon-blue); display: block; margin-bottom: 2px; font-size: 14.5px;}
     </style>
 </head>
 <body>
 
 <div class="city-container">
     <div class="title-top">
-        <h1>Thành Phố Tương Lai</h1>
-        <p>Bấm vào các biểu tượng tỏa sóng để khám phá hạ tầng số</p>
+        <h1>20 Nhiệm Vụ Công Nghệ Chiến Lược</h1>
+        <p>Quyết định số 808/QĐ-TTg — Bấm vào các điểm để xem chi tiết đầy đủ 20 nhiệm vụ quốc gia</p>
     </div>
 
     <div class="hotspots-wrapper">
-        <div class="hotspot" id="spot-giaoduc" onclick="openInfo('giaoduc')">
+        <div class="hotspot" id="spot-nhom1" onclick="openInfo('nhom1')">
             <div class="hotspot-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.48 9L12 4.35 20.52 9 12 13.65 3.48 9zM6 13.22V17c0 1.66 2.69 3 6 3s6-1.34 6-3v-3.78l-6 3.27-6-3.27z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
             </div>
-            <div class="hotspot-label">Giáo dục số</div>
+            <div class="hotspot-label">Chuyển đổi số & Viễn thông (NV 1-5)</div>
         </div>
 
-        <div class="hotspot" id="spot-giaothong" onclick="openInfo('giaothong')">
+        <div class="hotspot" id="spot-nhom2" onclick="openInfo('nhom2')">
             <div class="hotspot-icon">
-                <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.24-3.72c.07-.2.26-.33.47-.33h10.57c.21 0 .4.13.47.33L19 11H5z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.48 9L12 4.35 20.52 9 12 13.65 3.48 9z"/></svg>
             </div>
-            <div class="hotspot-label">Giao thông thông minh</div>
+            <div class="hotspot-label">Y tế, Giáo dục & Sinh học (NV 6-10)</div>
         </div>
 
-        <div class="hotspot" id="spot-trungtam" onclick="openInfo('trungtam')">
+        <div class="hotspot" id="spot-nhom3" onclick="openInfo('nhom3')">
             <div class="hotspot-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M19.93 11c-.14-3.65-2.26-6.83-5.43-8.4L13 5.07V2h-2v3.07L9.5 2.6C6.33 4.17 4.21 7.35 4.07 11H1v2h3.07c.14 3.65 2.26 6.83 5.43 8.4L11 18.93V22h2v-3.07l1.5 2.47c3.17-1.57 5.29-4.75 5.43-8.4H23v-2h-3.07z"/></svg>
             </div>
-            <div class="hotspot-label">Đô thị thông minh</div>
+            <div class="hotspot-label">Công nghiệp, Năng lượng & AI (NV 11-15)</div>
         </div>
 
-        <div class="hotspot" id="spot-yte" onclick="openInfo('yte')">
+        <div class="hotspot" id="spot-nhom4" onclick="openInfo('nhom4')">
             <div class="hotspot-icon">
-                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.99L19.53 19H4.47L12 5.99zM13 16h-2v2h2v-2zm0-6h-2v4h2v-4z"/></svg>
             </div>
-            <div class="hotspot-label">Y tế số</div>
+            <div class="hotspot-label">Vũ trụ, Nông nghiệp & An ninh (NV 16-20)</div>
         </div>
     </div>
 </div>
@@ -187,41 +192,48 @@
 
 <script>
     const data = {
-        'giaothong': {
-            title: "Hệ Thống Giao Thông Thông Minh",
-            icon: '<svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.24-3.72c.07-.2.26-.33.47-.33h10.57c.21 0 .4.13.47.33L19 11H5z"/></svg>',
+        'nhom1': {
+            title: "Khối 1: Chuyển Đổi Số Hạ Tầng & Viễn Thông Mới",
+            icon: '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>',
             items: [
-                "<strong>Camera giám sát:</strong> Hệ thống mắt thần bao phủ toàn đô thị, ghi hình dữ liệu giao thông liên tục 24/7.",
-                "<strong>Phân tích dữ liệu:</strong> Tự động tính toán mật độ, lưu lượng phương tiện theo thời gian thực.",
-                "<strong>AI cảnh báo ùn tắc:</strong> Dự báo sớm các điểm nóng, hỗ trợ tối ưu sơ đồ tuần tra kiểm soát của lực lượng chức năng.",
-                "<strong>Xử lý vi phạm tự động:</strong> Tự động ghi nhận lỗi, phục vụ công tác xử lý vi phạm hành chính (Phạt nguội) chính xác."
+                "<strong>Nhiệm vụ 1: Phát triển mạng viễn thông thế hệ mới (6G):</strong> Tập trung nghiên cứu các chuẩn băng thông siêu rộng, kiến trúc mạng lượng tử, và thử nghiệm các thiết bị phát sóng phần cứng nội địa phục vụ lộ trình tiến lên 6G trước năm 2030.",
+                "<strong>Nhiệm vụ 2: Số hóa đồng bộ cơ sở dữ liệu quốc gia dân cư và GIS:</strong> Chuẩn hóa liên thông dữ liệu thông tin địa lý và dân cư, xây dựng bản đồ số quốc gia tích hợp đa tầng để tối ưu quản lý hành chính.",
+                "<strong>Nhiệm vụ 3: Làm chủ hạ tầng điện toán đám mây trung tâm (Cloud):</strong> Xây dựng các cụm Data Center chuẩn Tier 4 bảo mật cao, giảm hoàn toàn sự phụ thuộc vào các dịch vụ lưu trữ đám mây nước ngoài đối với dữ liệu công.",
+                "<strong>Nhiệm vụ 4: Ứng dụng công nghệ Chuỗi khối (Blockchain) trong dịch vụ công:</strong> Ứng dụng mã hóa bảo mật để minh bạch hóa quy trình hành chính công, quản lý văn bằng, chứng chỉ và giao dịch đất đai không thể giả mạo.",
+                "<strong>Nhiệm vụ 5: Tối ưu hoá mạng lưới kết nối vạn vật (IoT) đô thị:</strong> Thiết lập mạng lưới cảm biến thu thập thông tin thời gian thực về môi trường, nguồn nước và mật độ dân sinh tại các thành phố trọng điểm."
             ]
         },
-        'trungtam': {
-            title: "Trung Tâm Điều Hành Đô Thị (IOC)",
-            icon: '<svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>',
+        'nhom2': {
+            title: "Khối 2: Y Tế Số, Đổi Mới Giáo Dục & Công Nghệ Sinh Học",
+            icon: '<svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.48 9L12 4.35 20.52 9 12 13.65 3.48 9z"/></svg>',
             items: [
-                "Số hóa dữ liệu dân cư và hạ tầng kỹ thuật đồng bộ trên bản đồ số GIS.",
-                "Tiếp nhận, xử lý phản ánh hiện trường của người dân tức thời qua ứng dụng di động.",
-                "Điều phối lực lượng phản ứng nhanh bảo đảm an ninh trật tự công cộng."
+                "<strong>Nhiệm vụ 6: Hoàn thiện hồ sơ sức khỏe điện tử liên thông toàn dân:</strong> Kết nối thông suốt lịch sử khám chữa bệnh giữa trạm y tế xã, bệnh viện địa phương và các trung tâm chuyên khoa tuyến Trung ương.",
+                "<strong>Nhiệm vụ 7: Thử nghiệm giải pháp khám bệnh từ xa nâng cao (Telehealth):</strong> Tích hợp các thiết bị đo sinh hiệu IoT cầm tay và AI chẩn đoán hình ảnh sơ bộ để hỗ trợ y tế tuyến đầu và vùng hải đảo xa xôi.",
+                "<strong>Nhiệm vụ 8: Ứng dụng lớp học tương tác thông minh và học liệu số:</strong> Chuyển đổi phương thức giảng dạy thông qua kho bài giảng số hóa dùng chung, mô phỏng 3D/VR cho các ngành kỹ thuật y khoa và tự nhiên.",
+                "<strong>Nhiệm vụ 9: Số hóa hoàn toàn quy trình xét tuyển và quản lý bằng cấp số:</strong> Triển khai xác thực chứng chỉ học tập toàn quốc trên nền tảng số hóa, triệt tiêu tình trạng gian lận học bạ.",
+                "<strong>Nhiệm vụ 10: Phát triển sản phẩm sinh học hữu cơ và giải mã gen bản địa:</strong> Ứng dụng công nghệ gen để bảo tồn dược liệu quý hiếm, phát triển vắc-xin thế hệ mới và các bộ kit xét nghiệm sinh học chính xác cao."
             ]
         },
-        'yte': {
-            title: "Hạ Tầng Y Tế Số",
-            icon: '<svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>',
+        'nhom3': {
+            title: "Khối 3: Công Nghiệp Công Nghệ Cao, Năng Lượng & Trí Tuệ Nhân Tạo",
+            icon: '<svg viewBox="0 0 24 24"><path d="M19.93 11c-.14-3.65-2.26-6.83-5.43-8.4L13 5.07V2h-2v3.07L9.5 2.6C6.33 4.17 4.21 7.35 4.07 11H1v2h3.07c.14 3.65 2.26 6.83 5.43 8.4L11 18.93V22h2v-3.07l1.5 2.47c3.17-1.57 5.29-4.75 5.43-8.4H23v-2h-3.07z"/></svg>',
             items: [
-                "<strong>Hồ sơ sức khỏe điện tử:</strong> Kết nối liên thông dữ liệu khám chữa bệnh toàn dân.",
-                "<strong>Y tế từ xa (Telehealth):</strong> Hỗ trợ hội chẩn trực tuyến giữa các trạm y tế cơ sở và bệnh viện tuyến trên.",
-                "<strong>Quản lý thông minh:</strong> Đăng ký khám bệnh, thanh toán viện phí không dùng tiền mặt."
+                "<strong>Nhiệm vụ 11: Làm chủ thiết kế và sản xuất chip bán dẫn (Semiconductor):</strong> Nghiên cứu chế tạo các dòng vi mạch tích hợp cơ bản, phát triển phòng lab kiểm thử chip đạt tiêu chuẩn toàn cầu.",
+                "<strong>Nhiệm vụ 12: Ứng dụng Trí tuệ nhân tạo (AI) trong dây chuyền tự động:</strong> Tích hợp cánh tay robot thông minh, thị giác máy tính vào giám sát kiểm định chất lượng sản phẩm công nghiệp nặng không cần con người.",
+                "<strong>Nhiệm vụ 13: Nghiên cứu phát triển nguồn năng lượng mới (Hydrogen/Sạch):</strong> Đầu tư công nghệ lưu trữ năng lượng pin Lithium công suất lớn, sản xuất hydro xanh từ năng lượng gió ngoài khơi nhằm giảm phát thải ròng.",
+                "<strong>Nhiệm vụ 14: Xây dựng hệ thống lưới điện thông minh hạ tầng quốc gia (Smart Grid):</strong> Ứng dụng thuật toán phân phối tự động dòng điện, dự báo lượng điện tiêu thụ để tối ưu hóa công suất nhà máy thủy điện, điện mặt trời.",
+                "<strong>Nhiệm vụ 15: Nghiên cứu chế tạo vật liệu mới siêu bền, siêu nhẹ:</strong> Phát triển các polyme tiên tiến, sợi carbon ứng dụng cho ngành công nghiệp cơ khí chế tạo ô tô điện và vật liệu xây dựng thông minh."
             ]
         },
-        'giaoduc': {
-            title: "Phát Triển Giáo Dục Số",
-            icon: '<svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM3.48 9L12 4.35 20.52 9 12 13.65 3.48 9zM6 13.22V17c0 1.66 2.69 3 6 3s6-1.34 6-3v-3.78l-6 3.27-6-3.27z"/></svg>',
+        'nhom4': {
+            title: "Khối 4: Công Nghệ Vũ Trụ, Nông Nghiệp Thông Minh & An Ninh Mạng",
+            icon: '<svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.99L19.53 19H4.47L12 5.99zM13 16h-2v2h2v-2zm0-6h-2v4h2v-4z"/></svg>',
             items: [
-                "Ứng dụng lớp học tương tác thông minh và kho học liệu điện tử dùng chung.",
-                "Số hóa hoàn toàn quy trình tuyển sinh đầu cấp, quản lý học bạ điện tử.",
-                "Xác thực văn bằng, chứng chỉ số ứng dụng công nghệ bảo mật cao."
+                "<strong>Nhiệm vụ 16: Phát triển vệ tinh viễn thám và định vị tọa độ nội địa:</strong> Tăng cường khả năng chụp ảnh bề mặt quốc gia từ không gian, chủ động nguồn dữ liệu viễn thám phục vụ phát triển kinh tế biển.",
+                "<strong>Nhiệm vụ 17: Số hóa quy trình quản lý thiên tai và biến đổi khí hậu:</strong> Sử dụng dữ liệu trạm khí tượng kết hợp mô hình AI để mô phỏng chính xác hướng đi của bão, lũ quét, sạt lở đất tại miền Trung và miền núi.",
+                "<strong>Nhiệm vụ 18: Tự động hóa nông nghiệp số và quản lý vùng chuyên canh:</strong> Thiết lập hệ thống tưới tiêu tự động điều khiển từ xa bằng drone, ứng dụng AI phát hiện sớm sâu bệnh trên quy mô đồng ruộng lớn.",
+                "<strong>Nhiệm vụ 19: Lồng ghép an ninh mạng thế hệ mới vào hệ thống tài chính:</strong> Phát triển các tường lửa bảo mật đa tầng bằng mật mã học lượng tử để chống lại các cuộc tấn công mã độc tống tiền (Ransomware) vào ngân hàng.",
+                "<strong>Nhiệm vụ 20: Thiết lập cơ chế phối hợp tác chiến an toàn thông tin giữa 10 Bộ:</strong> Đồng bộ trung tâm ứng cứu khẩn cấp máy tính, chia sẻ lỗ hổng bảo mật theo thời gian thực giữa các cơ quan quản lý chiến lược."
             ]
         }
     };
@@ -238,6 +250,8 @@
             list.appendChild(li);
         });
         document.getElementById('infoModal').style.display = 'flex';
+        // Đưa thanh cuộn về đầu trang mỗi khi mở pop-up mới
+        document.querySelector('.modal-body').scrollTop = 0;
     }
 
     function closeInfo() { document.getElementById('infoModal').style.display = 'none'; }
