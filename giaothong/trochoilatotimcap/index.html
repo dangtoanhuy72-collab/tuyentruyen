@@ -1,1 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trò chơi: Lật Ô Tìm Cặp - An Toàn Giao Thông</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background: #fdfbf7; color: #333; margin: 0; padding: 20px; }
+        h1 { color: #2c3e50; margin-bottom: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(5, 140px); gap: 12px; justify-content: center; margin-top: 20px; perspective: 1000px; }
+        .card-container { width: 140px; height: 140px; cursor: pointer; position: relative; transform-style: preserve-3d; transition: transform 0.6s; }
+        .card-container.flipped { transform: rotateY(180deg); }
+        .front, .back { width: 100%; height: 100%; position: absolute; border-radius: 10px; display: flex; align-items: center; justify-content: center; backface-visibility: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.15); padding: 10px; box-sizing: border-box; text-align: center; }
+        .front { background: #2c3e50; color: #fff; font-size: 32px; z-index: 2; }
+        .back { background: #e67e22; color: white; transform: rotateY(180deg); font-size: 11px; font-weight: bold; line-height: 1.4; overflow-y: auto; }
+        .card-text { width: 100%; display: flex; align-items: center; justify-content: center; height: 100%; }
+        .card-container.matched .back { background: #27ae60; cursor: default; }
+        #message { margin-top: 30px; padding: 20px; background: #fff; border-left: 5px solid #27ae60; display: none; font-weight: bold; color: #2c3e50; }
+    </style>
+</head>
+<body>
 
+    <h1>KIẾN THỨC AN TOÀN GIAO THÔNG</h1>
+    <div class="grid" id="game-board"></div>
+    <div id="message"></div>
+
+    <script>
+        const data = [
+            { q: "Thiết bị có ba màu đỏ, vàng, xanh dùng để điều khiển phương tiện tại các nút giao thông là gì?", a: "ĐÈN TÍN HIỆU" },
+            { q: "Chỉ số nào trong hơi thở hoặc máu được kiểm tra để xác định người điều khiển phương tiện có vi phạm quy định hay không?", a: "NỒNG ĐỘ CỒN" },
+            { q: "Yếu tố nào người điều khiển phương tiện phải làm chủ, không được vượt quá quy định khi tham gia giao thông?", a: "TỐC ĐỘ" },
+            { q: "Hành vi điều khiển xe luồn lách, đánh võng giữa dòng phương tiện được gọi là gì?", a: "LẠNG LÁCH" },
+            { q: "Loại giấy tờ chứng minh người điều khiển phương tiện đủ điều kiện lái xe theo quy định là gì?", a: "GIẤY PHÉP LÁI XE" },
+            { q: "Điều khiển phương tiện không đúng phần đường, làn đường quy định là hành vi gì?", a: "SAI LÀN" },
+            { q: "Thiết bị giúp bảo vệ vùng đầu, giảm nguy cơ chấn thương khi người đi xe máy xảy ra va chạm là gì?", a: "MŨ BẢO HIỂM" },
+            { q: "Hành vi sử dụng điện thoại khi đang điều khiển phương tiện có thể gây mất điều gì?", a: "TẬP TRUNG" },
+            { q: "Khoảng cách giữa các phương tiện cần duy trì để có thể xử lý tình huống bất ngờ gọi là gì?", a: "KHOẢNG CÁCH AN TOÀN" },
+            { q: "Giá trị quan trọng nhất cần bảo vệ khi tham gia giao thông là gì?", a: "TÍNH MẠNG CON NGƯỜI" }
+        ];
+
+        let cards = [];
+        data.forEach((item, index) => {
+            cards.push({ text: item.q, id: index });
+            cards.push({ text: item.a, id: index });
+        });
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        const board = document.getElementById('game-board');
+        let flippedCards = [];
+        let matchedCount = 0;
+
+        function initGame() {
+            shuffle(cards);
+            cards.forEach((cardData) => {
+                const cardContainer = document.createElement('div');
+                cardContainer.classList.add('card-container');
+                cardContainer.dataset.id = cardData.id;
+                cardContainer.innerHTML = `<div class="front">?</div><div class="back"><div class="card-text">${cardData.text}</div></div>`;
+                cardContainer.addEventListener('click', () => flipCard(cardContainer));
+                board.appendChild(cardContainer);
+            });
+        }
+
+        function flipCard(card) {
+            if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
+                card.classList.add('flipped');
+                flippedCards.push(card);
+                if (flippedCards.length === 2) checkForMatch();
+            }
+        }
+
+        function checkForMatch() {
+            const [c1, c2] = flippedCards;
+            if (c1.dataset.id === c2.dataset.id) {
+                c1.classList.add('matched');
+                c2.classList.add('matched');
+                matchedCount++;
+                flippedCards = [];
+                if (matchedCount === 10) {
+                    const msg = document.getElementById('message');
+                    msg.innerHTML = "CHÚC MỪNG! BẠN ĐÃ HOÀN THÀNH THỬ THÁCH.<br>HÃY NHỚ: AN TOÀN GIAO THÔNG BẮT ĐẦU TỪ Ý THỨC VÀ HÀNH ĐỘNG CỦA MỖI NGƯỜI.";
+                    msg.style.display = 'block';
+                }
+            } else {
+                setTimeout(() => {
+                    c1.classList.remove('flipped');
+                    c2.classList.remove('flipped');
+                    flippedCards = [];
+                }, 2500); // Đã tăng thời gian chờ lên 2.5 giây
+            }
+        }
+
+        initGame();
+    </script>
+</body>
+</html>
