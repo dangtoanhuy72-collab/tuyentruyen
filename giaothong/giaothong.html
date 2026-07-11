@@ -1,1 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>An toàn giao thông</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",Arial;
+}
+
+body{
+background:#edf4fb;
+color:#222;
+}
+
+header{
+
+background:linear-gradient(135deg,#005baa,#0099ff);
+
+padding:60px 20px;
+
+text-align:center;
+
+color:white;
+
+}
+
+header h1{
+
+font-size:42px;
+
+margin-bottom:10px;
+
+}
+
+header p{
+
+font-size:20px;
+
+opacity:.95;
+
+}
+
+.container{
+
+max-width:1300px;
+
+margin:auto;
+
+padding:50px 20px;
+
+}
+
+.section{
+
+margin-bottom:60px;
+
+}
+
+.section h2{
+
+margin-bottom:25px;
+
+color:#005baa;
+
+font-size:30px;
+
+border-left:8px solid #ffb703;
+
+padding-left:15px;
+
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:25px;
+
+}
+
+.card{
+
+background:white;
+
+border-radius:18px;
+
+padding:25px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 18px 35px rgba(0,0,0,.18);
+
+}
+
+.card .icon{
+
+font-size:55px;
+
+margin-bottom:15px;
+
+}
+
+.card h3{
+
+margin-bottom:12px;
+
+color:#005baa;
+
+}
+
+.card p{
+
+line-height:1.6;
+
+color:#555;
+
+min-height:60px;
+
+}
+
+.btn{
+
+display:inline-block;
+
+margin-top:18px;
+
+padding:10px 25px;
+
+background:#005baa;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:30px;
+
+font-weight:bold;
+
+}
+
+.btn:hover{
+
+background:#003d75;
+
+}
+
+footer{
+
+background:#0b1d35;
+
+color:white;
+
+text-align:center;
+
+padding:25px;
+
+margin-top:40px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🚦 TRUNG TÂM AN TOÀN GIAO THÔNG</h1>
+
+<p>Kiến thức - Kỹ năng - Trải nghiệm tương tác</p>
+
+</header>
+
+<div class="container">
+
+<div class="section">
+
+<h2>🎮 Trò chơi tương tác</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="icon">🧩</div>
+
+<h3>Ô chữ AN TOÀN</h3>
+
+<p>Khám phá kiến thức giao thông qua trò chơi ô chữ.</p>
+
+<a class="btn" href="game1/index.html">Mở</a>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🚔</div>
+
+<h3>Bạn là CSGT</h3>
+
+<p>Xử lý các tình huống giao thông thực tế.</p>
+
+<a class="btn" href="game2/index.html">Mở</a>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🎯</div>
+
+<h3>Lật ô tìm cặp</h3>
+
+<p>Ghép câu hỏi với đáp án đúng.</p>
+
+<a class="btn" href="game3/index.html">Mở</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h2>📚 Kiến thức an toàn</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="icon">⚠️</div>
+
+<h3>Cảnh báo nguy hiểm</h3>
+
+<p>Các tình huống dễ gây tai nạn và cách phòng tránh.</p>
+
+<a class="btn" href="canh-bao/index.html">Xem</a>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🚗</div>
+
+<h3>Lái xe an toàn</h3>
+
+<p>Kỹ năng điều khiển phương tiện trong nhiều điều kiện.</p>
+
+<a class="btn" href="lai-xe-an-toan/index.html">Xem</a>
+
+</div>
+
+<div class="card">
+
+<div class="icon">📏</div>
+
+<h3>Khoảng cách an toàn</h3>
+
+<p>Công cụ tính khoảng cách giữa các phương tiện.</p>
+
+<a class="btn" href="khoang-cach/index.html">Mở</a>
+
+</div>
+
+<div class="card">
+
+<div class="icon">👁️</div>
+
+<h3>Điểm mù xe tải</h3>
+
+<p>Minh họa trực quan các vùng không quan sát được.</p>
+
+<a class="btn" href="diem-mu/index.html">Khám phá</a>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🍺</div>
+
+<h3>Nồng độ cồn</h3>
+
+<p>Tìm hiểu quy định và tác hại khi điều khiển phương tiện.</p>
+
+<a class="btn" href="nong-do-con/index.html">Xem</a>
+
+</div>
+
+<div class="card">
+
+<div class="icon">🎥</div>
+
+<h3>Video tuyên truyền</h3>
+
+<p>Video, infographic và mô phỏng trực quan.</p>
+
+<a class="btn" href="videos/index.html">Xem</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+<h3>"An toàn giao thông là hạnh phúc của mọi nhà."</h3>
+
+</footer>
+
+</body>
+</html>
